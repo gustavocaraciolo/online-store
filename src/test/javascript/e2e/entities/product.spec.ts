@@ -83,62 +83,62 @@ export class ProductDialogPage {
 
     setNameInput = function(name) {
         this.nameInput.sendKeys(name);
-    }
+    };
 
     getNameInput = function() {
         return this.nameInput.getAttribute('value');
-    }
+    };
 
     setDescriptionInput = function(description) {
         this.descriptionInput.sendKeys(description);
-    }
+    };
 
     getDescriptionInput = function() {
         return this.descriptionInput.getAttribute('value');
-    }
+    };
 
     setPriceInput = function(price) {
         this.priceInput.sendKeys(price);
-    }
+    };
 
     getPriceInput = function() {
         return this.priceInput.getAttribute('value');
-    }
+    };
 
     setSizeSelect = function(size) {
         this.sizeSelect.sendKeys(size);
-    }
+    };
 
     getSizeSelect = function() {
         return this.sizeSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     sizeSelectLastOption = function() {
         this.sizeSelect.all(by.tagName('option')).last().click();
-    }
+    };
     setImageInput = function(image) {
         this.imageInput.sendKeys(image);
-    }
+    };
 
     getImageInput = function() {
         return this.imageInput.getAttribute('value');
-    }
+    };
 
     productCategorySelectLastOption = function() {
         this.productCategorySelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     productCategorySelectOption = function(option) {
         this.productCategorySelect.sendKeys(option);
-    }
+    };
 
     getProductCategorySelect = function() {
         return this.productCategorySelect;
-    }
+    };
 
     getProductCategorySelectedOption = function() {
         return this.productCategorySelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

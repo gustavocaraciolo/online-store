@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 
@@ -32,9 +33,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
 
     load(id) {
-        this.productService.find(id).subscribe((product) => {
-            this.product = product;
-        });
+        this.productService.find(id)
+            .subscribe((productResponse: HttpResponse<Product>) => {
+                this.product = productResponse.body;
+            });
     }
     byteSize(field) {
         return this.dataUtils.byteSize(field);

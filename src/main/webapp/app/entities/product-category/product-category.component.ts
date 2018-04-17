@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ProductCategory } from './product-category.model';
 import { ProductCategoryService } from './product-category.service';
-import { Principal, ResponseWrapper } from '../../shared';
+import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-product-category',
@@ -25,10 +26,10 @@ productCategories: ProductCategory[];
 
     loadAll() {
         this.productCategoryService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.productCategories = res.json;
+            (res: HttpResponse<ProductCategory[]>) => {
+                this.productCategories = res.body;
             },
-            (res: ResponseWrapper) => this.onError(res.json)
+            (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
     ngOnInit() {

@@ -78,62 +78,62 @@ export class OrderItemDialogPage {
 
     setQuantityInput = function(quantity) {
         this.quantityInput.sendKeys(quantity);
-    }
+    };
 
     getQuantityInput = function() {
         return this.quantityInput.getAttribute('value');
-    }
+    };
 
     setTotalPriceInput = function(totalPrice) {
         this.totalPriceInput.sendKeys(totalPrice);
-    }
+    };
 
     getTotalPriceInput = function() {
         return this.totalPriceInput.getAttribute('value');
-    }
+    };
 
     setStatusSelect = function(status) {
         this.statusSelect.sendKeys(status);
-    }
+    };
 
     getStatusSelect = function() {
         return this.statusSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     statusSelectLastOption = function() {
         this.statusSelect.all(by.tagName('option')).last().click();
-    }
+    };
     productSelectLastOption = function() {
         this.productSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     productSelectOption = function(option) {
         this.productSelect.sendKeys(option);
-    }
+    };
 
     getProductSelect = function() {
         return this.productSelect;
-    }
+    };
 
     getProductSelectedOption = function() {
         return this.productSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     orderSelectLastOption = function() {
         this.orderSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     orderSelectOption = function(option) {
         this.orderSelect.sendKeys(option);
-    }
+    };
 
     getOrderSelect = function() {
         return this.orderSelect;
-    }
+    };
 
     getOrderSelectedOption = function() {
         return this.orderSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

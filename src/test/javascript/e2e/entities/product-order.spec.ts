@@ -76,46 +76,46 @@ export class ProductOrderDialogPage {
 
     setPlacedDateInput = function(placedDate) {
         this.placedDateInput.sendKeys(placedDate);
-    }
+    };
 
     getPlacedDateInput = function() {
         return this.placedDateInput.getAttribute('value');
-    }
+    };
 
     setStatusSelect = function(status) {
         this.statusSelect.sendKeys(status);
-    }
+    };
 
     getStatusSelect = function() {
         return this.statusSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     statusSelectLastOption = function() {
         this.statusSelect.all(by.tagName('option')).last().click();
-    }
+    };
     setCodeInput = function(code) {
         this.codeInput.sendKeys(code);
-    }
+    };
 
     getCodeInput = function() {
         return this.codeInput.getAttribute('value');
-    }
+    };
 
     customerSelectLastOption = function() {
         this.customerSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     customerSelectOption = function(option) {
         this.customerSelect.sendKeys(option);
-    }
+    };
 
     getCustomerSelect = function() {
         return this.customerSelect;
-    }
+    };
 
     getCustomerSelectedOption = function() {
         return this.customerSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

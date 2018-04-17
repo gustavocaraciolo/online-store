@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +11,6 @@ import { OrderItemPopupService } from './order-item-popup.service';
 import { OrderItemService } from './order-item.service';
 import { Product, ProductService } from '../product';
 import { ProductOrder, ProductOrderService } from '../product-order';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-order-item-dialog',
@@ -39,9 +38,9 @@ export class OrderItemDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.productService.query()
-            .subscribe((res: ResponseWrapper) => { this.products = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: HttpResponse<Product[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productOrderService.query()
-            .subscribe((res: ResponseWrapper) => { this.productorders = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: HttpResponse<ProductOrder[]>) => { this.productorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -59,9 +58,9 @@ export class OrderItemDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<OrderItem>) {
-        result.subscribe((res: OrderItem) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<OrderItem>>) {
+        result.subscribe((res: HttpResponse<OrderItem>) =>
+            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: OrderItem) {
