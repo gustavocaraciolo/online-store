@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,6 @@ import { Shipment } from './shipment.model';
 import { ShipmentPopupService } from './shipment-popup.service';
 import { ShipmentService } from './shipment.service';
 import { Invoice, InvoiceService } from '../invoice';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-shipment-dialog',
@@ -35,7 +34,7 @@ export class ShipmentDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.invoiceService.query()
-            .subscribe((res: ResponseWrapper) => { this.invoices = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: HttpResponse<Invoice[]>) => { this.invoices = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -53,9 +52,9 @@ export class ShipmentDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Shipment>) {
-        result.subscribe((res: Shipment) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Shipment>>) {
+        result.subscribe((res: HttpResponse<Shipment>) =>
+            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: Shipment) {

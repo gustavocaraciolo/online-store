@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -45,9 +45,9 @@ export class ProductCategoryDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<ProductCategory>) {
-        result.subscribe((res: ProductCategory) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<ProductCategory>>) {
+        result.subscribe((res: HttpResponse<ProductCategory>) =>
+            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: ProductCategory) {

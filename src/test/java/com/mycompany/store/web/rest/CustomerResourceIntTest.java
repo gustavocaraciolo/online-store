@@ -50,8 +50,8 @@ public class CustomerResourceIntTest {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
-    private static final String DEFAULT_EMAIL = "?@xU.\\";
-    private static final String UPDATED_EMAIL = "Qh@z.Be";
+    private static final String DEFAULT_EMAIL = "=@?7.mK";
+    private static final String UPDATED_EMAIL = "/(@>.L";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";

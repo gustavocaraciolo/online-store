@@ -1,6 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { HttpResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Shipment } from './shipment.model';
 import { ShipmentService } from './shipment.service';
@@ -27,12 +28,14 @@ export class ShipmentPopupService {
             }
 
             if (id) {
-                this.shipmentService.find(id).subscribe((shipment) => {
-                    shipment.date = this.datePipe
-                        .transform(shipment.date, 'yyyy-MM-ddTHH:mm:ss');
-                    this.ngbModalRef = this.shipmentModalRef(component, shipment);
-                    resolve(this.ngbModalRef);
-                });
+                this.shipmentService.find(id)
+                    .subscribe((shipmentResponse: HttpResponse<Shipment>) => {
+                        const shipment: Shipment = shipmentResponse.body;
+                        shipment.date = this.datePipe
+                            .transform(shipment.date, 'yyyy-MM-ddTHH:mm:ss');
+                        this.ngbModalRef = this.shipmentModalRef(component, shipment);
+                        resolve(this.ngbModalRef);
+                    });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {

@@ -1,6 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { HttpResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Invoice } from './invoice.model';
 import { InvoiceService } from './invoice.service';
@@ -27,14 +28,16 @@ export class InvoicePopupService {
             }
 
             if (id) {
-                this.invoiceService.find(id).subscribe((invoice) => {
-                    invoice.date = this.datePipe
-                        .transform(invoice.date, 'yyyy-MM-ddTHH:mm:ss');
-                    invoice.paymentDate = this.datePipe
-                        .transform(invoice.paymentDate, 'yyyy-MM-ddTHH:mm:ss');
-                    this.ngbModalRef = this.invoiceModalRef(component, invoice);
-                    resolve(this.ngbModalRef);
-                });
+                this.invoiceService.find(id)
+                    .subscribe((invoiceResponse: HttpResponse<Invoice>) => {
+                        const invoice: Invoice = invoiceResponse.body;
+                        invoice.date = this.datePipe
+                            .transform(invoice.date, 'yyyy-MM-ddTHH:mm:ss');
+                        invoice.paymentDate = this.datePipe
+                            .transform(invoice.paymentDate, 'yyyy-MM-ddTHH:mm:ss');
+                        this.ngbModalRef = this.invoiceModalRef(component, invoice);
+                        resolve(this.ngbModalRef);
+                    });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {

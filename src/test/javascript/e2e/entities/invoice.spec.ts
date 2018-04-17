@@ -87,81 +87,81 @@ export class InvoiceDialogPage {
 
     setCodeInput = function(code) {
         this.codeInput.sendKeys(code);
-    }
+    };
 
     getCodeInput = function() {
         return this.codeInput.getAttribute('value');
-    }
+    };
 
     setDateInput = function(date) {
         this.dateInput.sendKeys(date);
-    }
+    };
 
     getDateInput = function() {
         return this.dateInput.getAttribute('value');
-    }
+    };
 
     setDetailsInput = function(details) {
         this.detailsInput.sendKeys(details);
-    }
+    };
 
     getDetailsInput = function() {
         return this.detailsInput.getAttribute('value');
-    }
+    };
 
     setStatusSelect = function(status) {
         this.statusSelect.sendKeys(status);
-    }
+    };
 
     getStatusSelect = function() {
         return this.statusSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     statusSelectLastOption = function() {
         this.statusSelect.all(by.tagName('option')).last().click();
-    }
+    };
     setPaymentMethodSelect = function(paymentMethod) {
         this.paymentMethodSelect.sendKeys(paymentMethod);
-    }
+    };
 
     getPaymentMethodSelect = function() {
         return this.paymentMethodSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     paymentMethodSelectLastOption = function() {
         this.paymentMethodSelect.all(by.tagName('option')).last().click();
-    }
+    };
     setPaymentDateInput = function(paymentDate) {
         this.paymentDateInput.sendKeys(paymentDate);
-    }
+    };
 
     getPaymentDateInput = function() {
         return this.paymentDateInput.getAttribute('value');
-    }
+    };
 
     setPaymentAmountInput = function(paymentAmount) {
         this.paymentAmountInput.sendKeys(paymentAmount);
-    }
+    };
 
     getPaymentAmountInput = function() {
         return this.paymentAmountInput.getAttribute('value');
-    }
+    };
 
     orderSelectLastOption = function() {
         this.orderSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     orderSelectOption = function(option) {
         this.orderSelect.sendKeys(option);
-    }
+    };
 
     getOrderSelect = function() {
         return this.orderSelect;
-    }
+    };
 
     getOrderSelectedOption = function() {
         return this.orderSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

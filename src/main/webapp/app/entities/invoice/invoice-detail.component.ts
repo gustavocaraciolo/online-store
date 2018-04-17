@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -31,9 +32,10 @@ export class InvoiceDetailComponent implements OnInit, OnDestroy {
     }
 
     load(id) {
-        this.invoiceService.find(id).subscribe((invoice) => {
-            this.invoice = invoice;
-        });
+        this.invoiceService.find(id)
+            .subscribe((invoiceResponse: HttpResponse<Invoice>) => {
+                this.invoice = invoiceResponse.body;
+            });
     }
     previousState() {
         window.history.back();

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,6 @@ import { Product } from './product.model';
 import { ProductPopupService } from './product-popup.service';
 import { ProductService } from './product.service';
 import { ProductCategory, ProductCategoryService } from '../product-category';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-product-dialog',
@@ -37,7 +36,7 @@ export class ProductDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.productCategoryService.query()
-            .subscribe((res: ResponseWrapper) => { this.productcategories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: HttpResponse<ProductCategory[]>) => { this.productcategories = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     byteSize(field) {
@@ -71,9 +70,9 @@ export class ProductDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Product>) {
-        result.subscribe((res: Product) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Product>>) {
+        result.subscribe((res: HttpResponse<Product>) =>
+            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: Product) {

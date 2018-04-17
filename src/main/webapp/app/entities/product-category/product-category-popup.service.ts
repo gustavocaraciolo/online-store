@@ -1,6 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { HttpResponse } from '@angular/common/http';
 import { ProductCategory } from './product-category.model';
 import { ProductCategoryService } from './product-category.service';
 
@@ -25,10 +26,12 @@ export class ProductCategoryPopupService {
             }
 
             if (id) {
-                this.productCategoryService.find(id).subscribe((productCategory) => {
-                    this.ngbModalRef = this.productCategoryModalRef(component, productCategory);
-                    resolve(this.ngbModalRef);
-                });
+                this.productCategoryService.find(id)
+                    .subscribe((productCategoryResponse: HttpResponse<ProductCategory>) => {
+                        const productCategory: ProductCategory = productCategoryResponse.body;
+                        this.ngbModalRef = this.productCategoryModalRef(component, productCategory);
+                        resolve(this.ngbModalRef);
+                    });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {

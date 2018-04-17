@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,6 @@ import { Invoice } from './invoice.model';
 import { InvoicePopupService } from './invoice-popup.service';
 import { InvoiceService } from './invoice.service';
 import { ProductOrder, ProductOrderService } from '../product-order';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-invoice-dialog',
@@ -35,7 +34,7 @@ export class InvoiceDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.productOrderService.query()
-            .subscribe((res: ResponseWrapper) => { this.productorders = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: HttpResponse<ProductOrder[]>) => { this.productorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -53,9 +52,9 @@ export class InvoiceDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Invoice>) {
-        result.subscribe((res: Invoice) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Invoice>>) {
+        result.subscribe((res: HttpResponse<Invoice>) =>
+            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
     private onSaveSuccess(result: Invoice) {

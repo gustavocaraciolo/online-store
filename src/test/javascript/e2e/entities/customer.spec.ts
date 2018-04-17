@@ -94,94 +94,94 @@ export class CustomerDialogPage {
 
     setFirstNameInput = function(firstName) {
         this.firstNameInput.sendKeys(firstName);
-    }
+    };
 
     getFirstNameInput = function() {
         return this.firstNameInput.getAttribute('value');
-    }
+    };
 
     setLastNameInput = function(lastName) {
         this.lastNameInput.sendKeys(lastName);
-    }
+    };
 
     getLastNameInput = function() {
         return this.lastNameInput.getAttribute('value');
-    }
+    };
 
     setGenderSelect = function(gender) {
         this.genderSelect.sendKeys(gender);
-    }
+    };
 
     getGenderSelect = function() {
         return this.genderSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     genderSelectLastOption = function() {
         this.genderSelect.all(by.tagName('option')).last().click();
-    }
+    };
     setEmailInput = function(email) {
         this.emailInput.sendKeys(email);
-    }
+    };
 
     getEmailInput = function() {
         return this.emailInput.getAttribute('value');
-    }
+    };
 
     setPhoneInput = function(phone) {
         this.phoneInput.sendKeys(phone);
-    }
+    };
 
     getPhoneInput = function() {
         return this.phoneInput.getAttribute('value');
-    }
+    };
 
     setAddressLine1Input = function(addressLine1) {
         this.addressLine1Input.sendKeys(addressLine1);
-    }
+    };
 
     getAddressLine1Input = function() {
         return this.addressLine1Input.getAttribute('value');
-    }
+    };
 
     setAddressLine2Input = function(addressLine2) {
         this.addressLine2Input.sendKeys(addressLine2);
-    }
+    };
 
     getAddressLine2Input = function() {
         return this.addressLine2Input.getAttribute('value');
-    }
+    };
 
     setCityInput = function(city) {
         this.cityInput.sendKeys(city);
-    }
+    };
 
     getCityInput = function() {
         return this.cityInput.getAttribute('value');
-    }
+    };
 
     setCountryInput = function(country) {
         this.countryInput.sendKeys(country);
-    }
+    };
 
     getCountryInput = function() {
         return this.countryInput.getAttribute('value');
-    }
+    };
 
     userSelectLastOption = function() {
         this.userSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     userSelectOption = function(option) {
         this.userSelect.sendKeys(option);
-    }
+    };
 
     getUserSelect = function() {
         return this.userSelect;
-    }
+    };
 
     getUserSelectedOption = function() {
         return this.userSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

@@ -77,43 +77,43 @@ export class ShipmentDialogPage {
 
     setTrackingCodeInput = function(trackingCode) {
         this.trackingCodeInput.sendKeys(trackingCode);
-    }
+    };
 
     getTrackingCodeInput = function() {
         return this.trackingCodeInput.getAttribute('value');
-    }
+    };
 
     setDateInput = function(date) {
         this.dateInput.sendKeys(date);
-    }
+    };
 
     getDateInput = function() {
         return this.dateInput.getAttribute('value');
-    }
+    };
 
     setDetailsInput = function(details) {
         this.detailsInput.sendKeys(details);
-    }
+    };
 
     getDetailsInput = function() {
         return this.detailsInput.getAttribute('value');
-    }
+    };
 
     invoiceSelectLastOption = function() {
         this.invoiceSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     invoiceSelectOption = function(option) {
         this.invoiceSelect.sendKeys(option);
-    }
+    };
 
     getInvoiceSelect = function() {
         return this.invoiceSelect;
-    }
+    };
 
     getInvoiceSelectedOption = function() {
         return this.invoiceSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();
