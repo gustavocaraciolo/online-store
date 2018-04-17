@@ -36,7 +36,8 @@
     "languages": [
       "en",
       "zh-cn",
-      "fr"
+      "fr",
+      "pt-br"
     ],
     "cacheProvider": "hazelcast",
     "enableHibernateCache": true
