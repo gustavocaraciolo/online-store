@@ -40,6 +40,8 @@
       "pt-br"
     ],
     "cacheProvider": "hazelcast",
-    "enableHibernateCache": true
+    "enableHibernateCache": true,
+    "herokuDeployType": "jar",
+    "herokuAppName": null
   }
 }
